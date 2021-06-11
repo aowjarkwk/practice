@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>연습문제 - Select 박스 값 구하기</title>
+    <script>
+    //option문서객체.selected => true/false
+    //multiple 
+    //select문서객체.options배열.selected
+    function value_check(){
+        var fruit = document.getElementById('fruit').options
+        var ptag = document.getElementsByTagName('p')
+        for(fru of fruit){
+            if (fru.selected == true){
+                var value = fru.value
+                var text = document.querySelector('[value='+value+']')
+                ptag[0].innerHTML = "선택된 과일 이름 : " +text.innerHTML
+                ptag[1].innerHTML = "선택된 과일 value : " + value
+            }
+        }
+    }
+    function value_check_multi(){
+        var fruit = document.getElementById('fruitMulti').options
+        var ptag = document.getElementsByTagName('p')
+        ptag[2].innerHTML = "선택된 과일 이름 : "
+        ptag[3].innerHTML = "선택된 과일 value : "
+        console.log(ptag[2])
+        for (fru of fruit){
+            if (fru.selected == true){
+                var value = fru.value
+                var text = document.querySelector('[value='+value+']')
+                ptag[2].innerHTML += text.innerHTML+','
+                ptag[3].innerHTML += value+','
+            }
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <p>선택된 과일 이름 : 사과</p>
+    <p>선택된 과일 value : apple</p>
+    <select name="fruit" id="fruit">
+        <option value="apple">사과</option>
+        <option value="strawberry">딸기</option>
+        <option value="lemon">레몬</option>
+        <option value="mango">망고</option>
+        <option value="melon">메론</option>
+    </select>
+    <button onclick="value_check()">현재 선택된 객체 value 가져오기</button>
+    <br>
+    <br>
+    <p>선택된 과일 이름 : 사과</p>
+    <p>선택된 과일 value : apple</p>
+    <select name="fruitMulti" id="fruitMulti" multiple>
+        <option value="apple">사과</option>
+        <option value="strawberry">딸기</option>
+        <option value="lemon">레몬</option>
+        <option value="mango">망고</option>
+        <option value="melon">메론</option>
+    </select>
+    <button onclick="value_check_multi()">현재 선택된 객체들 value 가져오기</button>
+</body>
+
+</html>
